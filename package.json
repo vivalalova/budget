@@ -1,0 +1,60 @@
+{
+	"devDependencies": {
+		"@babel/core": "^7.12.3",
+		"@babel/preset-env": "^7.12.1",
+		"babel-jest": "^26.6.1",
+		"jest": "^26.6.1"
+	},
+	"dependencies": {
+		"dayjs": "^1.9.4"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		],
+		"rules": {
+			"indent": [
+				"error",
+				"tab",
+				{
+					"SwitchCase": 1
+				}
+			],
+			"linebreak-style": [
+				"error",
+				"unix"
+			],
+			"quotes": [
+				"error",
+				"single",
+				{
+					"allowTemplateLiterals": true
+				}
+			],
+			"semi": [
+				"error",
+				"never"
+			],
+			"no-empty": [
+				0,
+				{
+					"allowEmptyCatch": [
+						true
+					]
+				}
+			],
+			"no-unused-vars": 0,
+			"no-console": 0,
+			"no-var": [
+				"error"
+			],
+			"prefer-const": [
+				"error"
+			],
+			"react/prop-types": [
+				0
+			]
+		}
+	}
+}
