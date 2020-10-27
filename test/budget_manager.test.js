@@ -1,5 +1,5 @@
 import { BudgetService } from "../index"
-import { Dayjs } from "dayjs"
+const Dayjs = require('dayjs')
 
 describe('total amount between period', function () {
 
@@ -33,6 +33,21 @@ describe('total amount between period', function () {
 		shouldReturnBudget('2020-10-01', '2020-10-05', 50)
 	})
 
+	it.skip('same month', () => {
+		givenBudget([
+			{ yearmonth: '202009', amount: 30 }
+		])
+		shouldReturnBudget('2020-09-01', '2020-09-30', 30)
+	})
+
+	it.skip('same month', () => {
+		givenBudget([
+			{ yearmonth: '202009', amount: 300 },
+			{ yearmonth: '202010', amount: 3100 }
+		])
+		shouldReturnBudget('2020-09-30', '2020-10-02', 210)
+	})
+
 	it.skip('invalid date', () => {
 		givenBudget([
 			{ yearmonth: '202001', amount: 310 }
@@ -40,7 +55,7 @@ describe('total amount between period', function () {
 		shouldReturnBudget('2020-10-01', '2020-09-01', 0)
 	})
 
-	it.skip('invalid date', () => {
+	it.skip('閏年', () => {
 		givenBudget([
 			{ yearmonth: '202002', amount: 290 }
 		])

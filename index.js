@@ -1,4 +1,4 @@
-// import Dayjs from "dayjs"
+
 const Dayjs = require('dayjs')
 // const dayjs = require('dayjs')
 // var dayjs = require('dayjs')
@@ -6,10 +6,10 @@ const Dayjs = require('dayjs')
 class BudgetService {
 
 	query(start, end) {
-		const budgets = this.getBudgets()
+		const budgets = this.getBudgets() || []
 
 		// filter
-		const currentDay = start
+		let currentDay = start
 		let sum = 0
 		while (currentDay <= end) {
 
@@ -17,7 +17,7 @@ class BudgetService {
 				return r.yearMonth === currentDay.format('yyyyMM')
 			})
 
-			sum += amount / dayjs().date()
+			sum += amount / currentDay.daysInMonth()
 
 			currentDay = currentDay.add(1, 'day')
 		}
