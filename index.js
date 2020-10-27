@@ -18,7 +18,7 @@ class BudgetService {
 		const endDate = end.add(1, 'day')
 		while (currentDay < endDate) {
 			const [{ amount = 0 } = { amount: 0 }] = budgets.filter(r => {
-				return r.yearmonth === currentDay.format('YYYYMM')
+				return r.yearMonth === currentDay.format('YYYYMM')
 			})
 			sum += amount / currentDay.daysInMonth()
 			currentDay = currentDay.add(1, 'day')

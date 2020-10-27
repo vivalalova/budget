@@ -23,90 +23,90 @@ describe('total amount between period', function () {
 
 	it('same day return one day amount', () => {
 		givenBudget([
-			{ yearmonth: '202001', amount: 310 }
+			{ yearMonth: '202001', amount: 310 }
 		])
 		shouldReturnBudget('2020-01-01', '2020-01-01', 10)
 	})
 
 	it('five day return five day amount', () => {
 		givenBudget([
-			{ yearmonth: '202010', amount: 310 }
+			{ yearMonth: '202010', amount: 310 }
 		])
 		shouldReturnBudget('2020-10-01', '2020-10-05', 50)
 	})
 
 	it('same month', () => {
 		givenBudget([
-			{ yearmonth: '202009', amount: 30 }
+			{ yearMonth: '202009', amount: 30 }
 		])
 		shouldReturnBudget('2020-09-01', '2020-09-30', 30)
 	})
 
 	it('same month no amount', () => {
 		givenBudget([
-			{ yearmonth: '202009', amount: 0 }
+			{ yearMonth: '202009', amount: 0 }
 		])
 		shouldReturnBudget('2020-09-01', '2020-09-03', 0)
 	})
 
 	it('two month', () => {
 		givenBudget([
-			{ yearmonth: '202009', amount: 300 },
-			{ yearmonth: '202010', amount: 3100 }
+			{ yearMonth: '202009', amount: 300 },
+			{ yearMonth: '202010', amount: 3100 }
 		])
 		shouldReturnBudget('2020-09-30', '2020-10-02', 210)
 	})
 
 	it('three month', () => {
 		givenBudget([
-			{ yearmonth: '202009', amount: 300 },
-			{ yearmonth: '202010', amount: 3100 },
-			{ yearmonth: '202011', amount: 30 }
+			{ yearMonth: '202009', amount: 300 },
+			{ yearMonth: '202010', amount: 3100 },
+			{ yearMonth: '202011', amount: 30 }
 		])
 		shouldReturnBudget('2020-09-30', '2020-11-07', 3117)
 	})
 
 	it('跨年', () => {
 		givenBudget([
-			{ yearmonth: '201912', amount: 310 },
-			{ yearmonth: '202001', amount: 3100 },
+			{ yearMonth: '201912', amount: 310 },
+			{ yearMonth: '202001', amount: 3100 },
 		])
 		shouldReturnBudget('2019-12-30', '2020-01-01', 120)
 	})
 
 	it('中間有空', () => {
 		givenBudget([
-			{ yearmonth: '202009', amount: 300 },
-			{ yearmonth: '202010', amount: 0 },
-			{ yearmonth: '202011', amount: 3000 }
+			{ yearMonth: '202009', amount: 300 },
+			{ yearMonth: '202010', amount: 0 },
+			{ yearMonth: '202011', amount: 3000 }
 		])
 		shouldReturnBudget('2020-09-01', '2020-11-30', 3300)
 	})
 
 	it('invalid date', () => {
 		givenBudget([
-			{ yearmonth: '202001', amount: 310 }
+			{ yearMonth: '202001', amount: 310 }
 		])
 		shouldReturnBudget('2020-10-01', '2020-09-01', 0)
 	})
 
 	it('閏年2月', () => {
 		givenBudget([
-			{ yearmonth: '202002', amount: 290 }
+			{ yearMonth: '202002', amount: 290 }
 		])
 		shouldReturnBudget('2020-02-01', '2020-02-01', 10)
 	})
 
 	it('平年2月', () => {
 		givenBudget([
-			{ yearmonth: '202102', amount: 280 }
+			{ yearMonth: '202102', amount: 280 }
 		])
 		shouldReturnBudget('2021-02-01', '2021-02-01', 10)
 	})
 
 	it('2100年2月', () => {
 		givenBudget([
-			{ yearmonth: '210002', amount: 280 }
+			{ yearMonth: '210002', amount: 280 }
 		])
 		shouldReturnBudget('2100-02-01', '2100-02-01', 10)
 	})
