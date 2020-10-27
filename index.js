@@ -1,16 +1,28 @@
-import { Dayjs } from "dayjs"
+// import Dayjs from "dayjs"
+const Dayjs = require('dayjs')
 // const dayjs = require('dayjs')
 // var dayjs = require('dayjs')
 
-export class BudgetService {
+class BudgetService {
 
 	query(start, end) {
 		const budgets = this.getBudgets()
 
-		const from = new dayjs(start)
-		const to = new dayjs(end)
+		// filter
+		const currentDay = start
+		let sum = 0
+		while (currentDay <= end) {
 
-		return 0
+			const [{ amount = 0 } = { amount: 0 }] = budgets.filter(r => {
+				return r.yearMonth === currentDay.format('yyyyMM')
+			})
+
+			sum += amount / dayjs().date()
+
+			currentDay = currentDay.add(1, 'day')
+		}
+
+		return sum
 	}
 
 	getBudgets() {
@@ -30,4 +42,10 @@ class IBudgetRepo {
 class Budget {
 	// let yearMonth: String
 	// let amount: String
+}
+
+module.exports = {
+	BudgetService,
+	IBudgetRepo,
+	Budget
 }
