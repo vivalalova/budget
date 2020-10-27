@@ -1,16 +1,7 @@
 
 const Dayjs = require('dayjs')
-var utc = require('dayjs/plugin/utc')
-var timezone = require('dayjs/plugin/timezone')
-Dayjs.extend(utc)
-Dayjs.extend(timezone)
-Dayjs.tz.setDefault("Asia/Taipei")
-
-// const dayjs = require('dayjs')
-// var dayjs = require('dayjs')
 
 class BudgetService {
-
 	query(start, end) {
 		const budgets = this.getBudgets() || []
 		let currentDay = start
