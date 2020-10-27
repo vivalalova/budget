@@ -104,6 +104,13 @@ describe('total amount between period', function () {
 		shouldReturnBudget('2021-02-01', '2021-02-01', 10)
 	})
 
+	it('2100年2月', () => {
+		givenBudget([
+			{ yearmonth: '210002', amount: 280 }
+		])
+		shouldReturnBudget('2100-02-01', '2100-02-01', 10)
+	})
+
 	function shouldReturnBudget(start, end, amount) {
 
 		let startDate = new Dayjs(start)
