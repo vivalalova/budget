@@ -3,14 +3,16 @@ const Dayjs = require('dayjs')
 
 class BudgetService {
 	query(start, end) {
+		if (start > end) {
+			return 0
+		}
+
 		const budgets = this.getBudgets() || []
 		let currentDay = start
 		let sum = 0
 		const endDate = end.add(1, 'day')
 
-		if (currentDay > endDate) {
-			return 0
-		}
+
 
 		while (currentDay < endDate) {
 			const [{ amount = 0 } = { amount: 0 }] = budgets.filter(r => {
