@@ -15,8 +15,8 @@ class BudgetService {
 		const budgets = this.getBudgets() || []
 		let currentDay = start
 		let sum = 0
-		end = end.add(1, 'day')
-		while (currentDay < end) {
+		const endDate = end.add(1, 'day')
+		while (currentDay < endDate) {
 			const [{ amount = 0 } = { amount: 0 }] = budgets.filter(r => {
 				return r.yearmonth === currentDay.format('YYYYMM')
 			})
