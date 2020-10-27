@@ -13,26 +13,17 @@ class BudgetService {
 
 	query(start, end) {
 		const budgets = this.getBudgets() || []
-
-		// filter
 		let currentDay = start
 		let sum = 0
 		end = end.add(1, 'day')
 		while (currentDay < end) {
-			// console.log({ end, currentDay })
-
 			const [{ amount = 0 } = { amount: 0 }] = budgets.filter(r => {
-				// console.log("----r", r);
-				// console.log("----c", currentDay.format('YYYYMM'));
 				return r.yearmonth === currentDay.format('YYYYMM')
 			})
-
 			sum += amount / currentDay.daysInMonth()
-
 			currentDay = currentDay.add(1, 'day')
 		}
-
-		return sum
+		return Math.floor(sum)
 	}
 
 	getBudgets() {
